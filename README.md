@@ -2,7 +2,7 @@ a few select files from a project i'm working on, built with bun/elysia, drizzle
 
 few things to note:
 
-the wallet is an append only ledger, balance is always calculated from the credit/debit entries directly. we do this on all routes for now, but we might want to introduce a cached value for read only routes like /user/profile and keep the live calculation only where it matters, like /buy
+the wallet is an append only ledger, balance is always calculated from the credit/debit entries directly. we do this on all routes for now, but we might want to introduce a cached value for read only routes like /user/profile and keep the live calculation only where it matters like /buy
 
 we use postgres FOR UPDATE to lock the profile row, so if two purchases fire at the same time for the same user, only one transaction goes through at once and the other has to wait for the first to finish before it can proceed. this means two simultaneous purchases can never both spend the same funds
 
